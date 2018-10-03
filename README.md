@@ -5,7 +5,8 @@ Laboratory work **II** on the Theory of Information.
 Teacher: Boltak S.V.
 ***
 Find me: [Telegram](t.me/AlexeyShilo)
-=====================================
+---
+
 
 *The basic idea of `streaming cryptosystems` is to encrypt the source
 text M using a cryptographic key K, whose length is equal to the length of the text.
