@@ -1,6 +1,5 @@
 import time
-
-
+# 00000000000000000000000000000
 # 10000000000000000000000000010 = [29,2] = 268435458
 # 11010111111010111101011101110 = 452819694
 # 11111111111111111111111111111 = 536870911
@@ -15,14 +14,15 @@ def bytes_from_file(filename, chunksize=8192):
             else:
                 break
 
-def Cipher(filename, int, poly):
-
-    register = 452819694
+def Cipher(filename, int = 452819694):
+    print(filename)
+    register = int
     # register = 536870911
     mask = 268435458
     mask_obr = 536870911
     print(bin(mask), bin(register))
     b_arr = bytearray()
+    b_arr_key = bytearray()
     file_out = open(filename+'.cph', 'wb')
     start_time = time.time()
 
@@ -44,19 +44,23 @@ def Cipher(filename, int, poly):
 
             i -= 1
         b_arr.append(b ^ key_byte)
+        b_arr_key.append(key_byte)
 
     print("--- %s seconds ---" % (time.time() - start_time))
     file_out.write(b_arr)
     file_out.close()
+    return b_arr_key
 
-def DeCipher(filename, int, poly):
-
-    register = 452819694
+def DeCipher(filename, int=452819694 ):
+    filename = filename[:(len(filename)-4)]
+    print(filename)
+    register = int
     # register = 536870911
     mask = 268435458
     mask_obr = 536870911
     print(bin(mask), bin(register))
     b_arr = bytearray()
+    b_arr_key = bytearray()
     file_out = open(filename, 'wb')
     start_time = time.time()
 
@@ -78,10 +82,13 @@ def DeCipher(filename, int, poly):
 
             i -= 1
         b_arr.append(b ^ key_byte)
+        b_arr_key.append(key_byte)
 
     print("--- %s seconds ---" % (time.time() - start_time))
     file_out.write(b_arr)
     file_out.close()
-Cipher('1.mp4',1,1)
-DeCipher('1.mp4',1,1)
+    return b_arr_key
+
+#Cipher('delphi.gif',1,1)
+#DeCipher('delphi.gif',1,1)
 #print(check,' ',key_byte)
